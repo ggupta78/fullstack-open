@@ -1,0 +1,19 @@
+title New Note - Single Page App
+
+note over browser:
+user enters a new note in the textbox and clicks the 
+submit button on the browser, in spa.js, 
+1) the new note is added to the notes[] maintained on client side, and
+2) redrawNotes() function is called to redraw the notes,
+3) after which an ajax request is sent to the server to
+the /new_note_spa endpoint with the new note to save on server
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: HTTP 201, {"message":"note created"}
+
+note over browser:
+the ajax request returns successfully with HTTP status 201, and
+a JSON message in the reponse which is
+{"message":"note created"}
+end note
