@@ -1,0 +1,48 @@
+```mermaid
+title New Note
+
+note over browser:
+user enters a new note in the textbox
+and clicks the submit button 
+end note
+
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over server:
+on the server the new note gets added
+to the list maintained on the server
+and the server sends back a url redirection
+response to the browser so that the browser
+can fetch the notes page to render the 
+updated notes
+end note
+server-->browser: HTTP 302 - URL Redirection
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+server-->browser: HTML code
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+server-->browser: main.css
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+server-->browser: main.js
+
+note over browser:
+browser starts executing js-code
+that requests JSON data from server 
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server-->browser: [{ content: "HTML is easy", date: "2019-05-23" }, ...]
+
+note over browser:
+browser executes the event handler
+that renders notes to display
+end note
+
+browser->server: HTTP GET https://studies.cs.helsinki.fi/favicon.ico
+server-->browser: favicon.ico
+
+note over browser:
+the last http call is to fetch the
+favicon.ico file which is the 
+image that displays on the 
+browser tab
+end note
+```
